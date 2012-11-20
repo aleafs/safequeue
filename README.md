@@ -2,11 +2,33 @@
 
 ## About
 
-## Api
+`timedqueue` is simple sequence queue for Node.js, which supports both `timeout` and `maxitem` control.
 
 ## Install
 
+```bash
+$ npm install timedqueue
+```
+
 ## Usage
+
+```javascript
+var queue = require('timedqueue').create({
+  'timeout' : 100,
+  'maxitem' : 1000,
+});
+
+queue.on('full', function (len, max) {
+});
+
+queue.on('timeout', function (item, timeout, pos) {
+  // XXX: console.log ...
+});
+
+queue.push({'a' : 1});
+queue.pop();
+
+```
 
 ## License
 
