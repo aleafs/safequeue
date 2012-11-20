@@ -1,19 +1,21 @@
-[![Build Status](https://secure.travis-ci.org/aleafs/timedqueue.png?branch=master)](http://travis-ci.org/aleafs/timedqueue)
+[![Build Status](https://secure.travis-ci.org/aleafs/safequeue.png?branch=master)](http://travis-ci.org/aleafs/safequeue)
+
+Jscoverage: [**100%**](http://aleafs.github.com/coverage/safequeue.html)
 
 ## About
 
-`timedqueue` is simple sequence queue for Node.js, which supports both `timeout` and `maxitem` control.
+`safequeue` is simple sequence queue for Node.js, which supports both `timeout` and `maxitem` control.
 
 ## Install
 
 ```bash
-$ npm install timedqueue
+$ npm install safequeue
 ```
 
 ## Usage
 
 ```javascript
-var queue = require('timedqueue').create({
+var queue = require('safequeue').create({
   'timeout' : 100,
   'maxitem' : 1000,
 });

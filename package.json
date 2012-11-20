@@ -1,11 +1,11 @@
 {
-  "name": "timedqueue",
+  "name": "safequeue",
   "version": "0.0.1",
   "author": "Aleafs Zhang (zhangxc83@gmail.com)",
   "contributors": [],
-  "homepage": "git@github.com:aleafs/timedqueue.git",
+  "homepage": "git@github.com:aleafs/safequeue.git",
   "description": "An smart queue module with timeout support",
-  "keywords": [ "queue", "timeout" ],
+  "keywords": [ "queue", "timeout", "maxitem" ],
   "dependencies": {
   },
   "engines": {
