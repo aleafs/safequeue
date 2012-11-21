@@ -12,7 +12,7 @@ describe('queue with timeout', function () {
     var _me = Queue.create({'timeout' : 0, 'maxitem' : -1});
 
     var _messages = [];
-    ['full', 'timeout'].forEach(function (i) {
+    ['fill', 'full', 'timeout'].forEach(function (i) {
       _me.on(i, function () {
         _messages.push([i].concat(Array.prototype.slice.call(arguments)));
       });
@@ -25,7 +25,7 @@ describe('queue with timeout', function () {
 
     _me.size().should.eql(4);
     process.nextTick(function () {
-      _messages.should.eql([]);
+      _messages.should.eql([['fill']]);
       _me.shift().should.eql(1);
       _me.shift().should.eql('a');
       _me.pop().should.eql('d');
@@ -33,7 +33,7 @@ describe('queue with timeout', function () {
 
       setTimeout(function () {
         _me.size().should.eql(0);
-        _messages.should.eql([[
+        _messages.should.eql([['fill'],[
           'timeout', 'c', 5, 0
           ]]);
         should.ok(!_me.shift());
@@ -48,7 +48,7 @@ describe('queue with timeout', function () {
     var _me = Queue.create({'timeout' : 5, 'maxitem' : 5});
 
     var _messages = [];
-    ['full', 'timeout'].forEach(function (i) {
+    ['fill', 'full', 'timeout'].forEach(function (i) {
       _me.on(i, function () {
         _messages.push([i].concat(Array.prototype.slice.call(arguments)));
       });
@@ -62,7 +62,7 @@ describe('queue with timeout', function () {
     _me.push(6).should.eql(-1);
     _me.size().should.eql(5);
 
-    _messages.should.eql([['full', 5, 5]]);
+    _messages.should.eql([['fill'],['full', 5, 5]]);
     _messages = [];
 
     _me.clean();  // XXX: make sure to clean all timer
@@ -70,7 +70,7 @@ describe('queue with timeout', function () {
     _me.push('x');
     _me.size().should.eql(1);
     setTimeout(function () {
-      _messages.should.eql([['timeout', 'x', 5, 0]]);
+      _messages.should.eql([['fill'],['timeout', 'x', 5, 0]]);
       done();
     }, 8);
   });

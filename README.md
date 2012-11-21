@@ -20,6 +20,9 @@ var queue = require('safequeue').create({
   'maxitem' : 1000,
 });
 
+queue.on('fill', function () {
+});
+
 queue.on('full', function (len, max) {
 });
 
